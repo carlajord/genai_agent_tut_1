@@ -1,6 +1,13 @@
 import os
+import ollama
 from llama_index.core import StorageContext, VectorStoreIndex, load_index_from_storage
 from llama_index.readers.file import PDFReader
+from llama_index.core import Settings
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+os.environ['CURL_CA_BUNDLE'] = ''
+embed_model = HuggingFaceEmbedding(model_name="nomic-ai/nomic-embed-text-v1.5",
+                                   trust_remote_code=True)
+Settings.embed_model = embed_model
 
 def get_index(data, index_name):
     index = None

@@ -5,6 +5,7 @@ from llama_index.experimental.query_engine import PandasQueryEngine
 from prompts import new_prompt, instruction_str, context
 from llama_index.llms.ollama import Ollama
 from note_engine import note_engine
+from plot_engine import scatter_plot_engine
 from llama_index.core.tools import QueryEngineTool, ToolMetadata
 from pdf import canada_egine
 from llama_index.core.agent import ReActAgent
@@ -12,6 +13,9 @@ from llama_index.core import Settings
 
 load_dotenv()
 
+# steps to run:
+# start server: ollama serve
+# run model: ollama run llama3.1
 
 llm = Ollama(model="llama3.1", request_timeout=120.0)
 Settings.llm = llm
@@ -39,7 +43,8 @@ tools = [
         metadata=ToolMetadata(
             name="canada_data",
             description="this gives detailed information about canada the country",
-    ))
+    )),
+    scatter_plot_engine
 ]
 
 agent = ReActAgent.from_tools(

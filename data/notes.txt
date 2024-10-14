@@ -3,3 +3,4 @@ I wrote an agent
 The user has not provided any context for the current task
 The user has not provided a specific question for the current task
 The conversation has stalled, waiting for user input
+Note
